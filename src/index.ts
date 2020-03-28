@@ -1,0 +1,2 @@
+
+export { SentryPlugin } from './SentryPlugin';
