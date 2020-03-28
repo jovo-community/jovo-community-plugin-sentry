@@ -1,4 +1,4 @@
-# jovo-plugin-sentry
+# jovo-community-plugin-sentry
 
 ## Overview
 This plugin for the [Jovo Framework](https://github.com/jovotech/jovo-framework) allows you to easily add error monitoring with [Sentry](https://sentry.io) to your voice projects.
@@ -12,13 +12,13 @@ The following platforms are supported:
 ## Install
 Install the plugin into your Jovo project:
 
-`npm install jovo-plugin-sentry --save`
+`npm install jovo-community-plugin-sentry --save`
 
 Use the plugin in:
 
 app.js:
 ```javascript
-const { Sentry } = require('jovo-plugin-sentry');
+const { Sentry } = require('jovo-community-plugin-sentry');
 
 
 app.use(
@@ -30,7 +30,7 @@ app.use(
 
 app.ts:
 ```typescript
-import { Sentry } from 'jovo-plugin-sentry';
+import { Sentry } from 'jovo-community-plugin-sentry';
 
 app.use(
     // ... base imports

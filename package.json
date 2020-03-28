@@ -1,5 +1,5 @@
 {
-  "name": "jovo-plugin-sentry",
+  "name": "jovo-community-plugin-sentry",
   "version": "1.0.0",
   "description": "A Jovo Framework plugin for Sentry",
   "main": "dist/src/index",
@@ -13,13 +13,13 @@
   },
   "author": "Mark Tucker",
   "license": "MIT",
-  "homepage": "https://github.com/jovo-community/jovo-plugin-sentry#readme",
+  "homepage": "https://github.com/jovo-community/jovo-community-plugin-sentry#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jovo-community/jovo-plugin-sentry"
+    "url": "https://github.com/jovo-community/jovo-community-plugin-sentry"
   },
   "bugs": {
-    "url": "https://github.com/jovo-community/jovo-plugin-sentry/issues"
+    "url": "https://github.com/jovo-community/jovo-community-plugin-sentry/issues"
   },
   "dependencies": {
     "jovo-core": "^2.2.10",
