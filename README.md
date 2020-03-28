@@ -18,29 +18,39 @@ Use the plugin in:
 
 app.js:
 ```javascript
-const { Sentry } = require('jovo-community-plugin-sentry');
+const { SentryPlugin } = require('jovo-community-plugin-sentry');
 
 
 app.use(
     // ... base imports
-    new Sentry()
+    new SentryPlugin()
 );
 ```
 
 
 app.ts:
 ```typescript
-import { Sentry } from 'jovo-community-plugin-sentry';
+import { SentryPlugin } from 'jovo-community-plugin-sentry';
 
 app.use(
     // ... base imports
-    new Sentry()
+    new SentryPlugin()
 );
 ```
 
 ## Configuration
 
 Refer to the Sentry documentation on [Configuration](https://docs.sentry.io/error-reporting/configuration/?platform=node).
+
+Supported configuration values:
+- dsn
+- debug
+- release
+- environment
+- maxBreadcrumbs
+- sampleRate
+- attachStacktrace
+- serverName
 
 config.js or config.ts:
 ```javascript
