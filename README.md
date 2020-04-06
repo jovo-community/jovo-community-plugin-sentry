@@ -8,6 +8,7 @@ The following platforms are supported:
 * Amazon Alexa
 * Google Assistant
 * Samsung Bixby
+* Twilio Autopilot
 
 ## Install
 Install the plugin into your Jovo project:

@@ -76,21 +76,23 @@ export class SentryPlugin implements Plugin {
     }
 
     getExtras(jovo: Jovo): object {
-        let extras = {};
+        const request = jovo.$request?.toJSON();
+        const extras: any = {
+            deviceId: jovo.getDeviceId(),
+            hasAudioInterface: jovo.hasAudioInterface(),
+            hasScreenInterface: jovo.hasScreenInterface(),
+            hasVideoInterface: jovo.hasVideoInterface(),
+            sessionData: jovo.$session.$data,
+        };
 
-        if (jovo.constructor.name === 'AlexaSkill') {
-            const request = jovo.$request?.toJSON();
+        if (request) {
+            extras.context = request.context;
+            extras.request = request.request || '';
+            extras.sessionId = (request.session || {}).sessionId;
+        }
 
-            if (request) {
-                extras = {
-                    context: request.context,
-                    hasAudioInterface: jovo.hasAudioInterface(),
-                    hasScreenInterface: jovo.hasScreenInterface(),
-                    request: request.request || '',
-                    sessionData: jovo.$session.$data,
-                    sessionId: (request.session || {}).sessionId,
-                };
-            }
+        if (jovo.constructor.name === 'AutopilotBot') {
+            extras.rawText = jovo.getRawText();
         }
 
         return extras;
