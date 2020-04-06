@@ -1,5 +1,9 @@
 # jovo-community-plugin-sentry
 
+[![NPM](https://nodei.co/npm/jovo-community-plugin-sentry.png)](https://nodei.co/npm/jovo-community-plugin-sentry/)
+
+![Node CI](https://github.com/jovo-community/jovo-community-plugin-sentry/workflows/Build/badge.svg)
+
 ## Overview
 This plugin for the [Jovo Framework](https://github.com/jovotech/jovo-framework) allows you to easily add error monitoring with [Sentry](https://sentry.io) to your voice projects.
 
@@ -8,6 +12,7 @@ The following platforms are supported:
 * Amazon Alexa
 * Google Assistant
 * Samsung Bixby
+* Twilio Autopilot
 
 ## Install
 Install the plugin into your Jovo project:
