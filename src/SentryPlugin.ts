@@ -42,7 +42,7 @@ export class SentryPlugin implements Plugin {
         const extras = this.getExtras(jovo);
 
         configureScope((scope: Scope) => {
-            scope.setUser({ id: jovo.getUserId() });
+            scope.setUser({ id: jovo.$user.getId() });
             scope.setTag('platform', jovo.getPlatformType());
             scope.setTag('locale', jovo.getLocale() || '');
             scope.setExtras(extras);
