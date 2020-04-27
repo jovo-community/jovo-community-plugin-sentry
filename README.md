@@ -59,12 +59,31 @@ Supported configuration values:
 
 config.js or config.ts:
 ```javascript
+plugin: {
     SentryPlugin: {
         dsn: 'https://sample@sentry.io/0000000', // or set SENTRY_DSN
-        environment: process.env.STAGE, //or set SENTRY_ENVIRONMENT
+        environment: process.env.JOVO_STAGE, //or set SENTRY_ENVIRONMENT
         debug: false,
         release: 'voice-app@1.0.0', //or set SENTRY_RELEASE
     },
+},
+```
+
+Here is a typical implementation:
+1. In `.env` file (for `local` stage and Jovo Webhook) and in lambda environment variables (for all other stages including `prod`), set the `SENTRY_DSN` variable:
+
+```
+SENTRY_DSN = "https://xxx@sentry.io/xxx"
+```
+
+2. Set the `environment` value in `config.js` or `config.ts`:
+
+```js
+  plugin: {
+    SentryPlugin: {
+      environment: process.env.JOVO_STAGE,
+    }
+  },
 ```
 
 # License
