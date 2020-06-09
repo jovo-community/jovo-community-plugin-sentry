@@ -39,7 +39,7 @@ export class SentryPlugin implements Plugin {
 
 
     install(app: BaseApp) {
-        Jovo.prototype.$sentry = this;
+        (Jovo.prototype as any).$sentry = this;
 
         app.middleware('fail')!.use(this.errorHandler.bind(this));
         app.middleware('platform.nlu')!.use(this.endReasonHandler.bind(this));
@@ -80,6 +80,8 @@ export class SentryPlugin implements Plugin {
         if (!jovo) {
             return;
         }
+
+        // (jovo as any).$sentry = this;
 
         const request = jovo?.$request?.toJSON();
 
