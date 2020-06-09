@@ -86,6 +86,23 @@ SENTRY_DSN = "https://xxx@sentry.io/xxx"
   },
 ```
 
+## Capture
+
+The plugin will automatically capture exceptions in the code, but you can also access the capture methods from any handler:
+
+```js
+this.$sentry.captureMessage('Hello, world!');
+
+this.$sentry.captureException(new Error('Good bye'));
+
+this.$sentry.captureEvent({
+  message: 'Manual',
+  stacktrace: [
+    // ...
+  ],
+});
+```
+
 # License
 
 MIT

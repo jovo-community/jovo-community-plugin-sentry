@@ -1,4 +1,4 @@
-import { addBreadcrumb, captureException, configureScope, init, Scope } from '@sentry/node';
+import * as Sentry from '@sentry/node';
 import { BaseApp, HandleRequest, Jovo, Plugin, PluginConfig } from 'jovo-core';
 
 export interface Config extends PluginConfig {
@@ -25,14 +25,29 @@ export class SentryPlugin implements Plugin {
         }
     }
 
+    captureEvent(event: Sentry.Event): string {
+        return Sentry.captureEvent(event);
+    }
+
+    captureException(exception: any): string {
+        return Sentry.captureException(exception);
+    }
+
+    captureMessage(message: string, level?: Sentry.Severity | undefined): string {
+        return Sentry.captureMessage(message, level);
+    }
+
+
     install(app: BaseApp) {
+        Jovo.prototype.$sentry = this;
+
         app.middleware('fail')!.use(this.errorHandler.bind(this));
         app.middleware('platform.nlu')!.use(this.endReasonHandler.bind(this));
 
-        init(this.config);
+        Sentry.init(this.config);
     }
 
-    errorHandler(handleRequest: HandleRequest) {
+    private errorHandler(handleRequest: HandleRequest) {
         const { jovo } = handleRequest;
 
         if (!jovo) {
@@ -41,7 +56,7 @@ export class SentryPlugin implements Plugin {
 
         const extras = this.getExtras(jovo);
 
-        configureScope((scope: Scope) => {
+        Sentry.configureScope((scope: Sentry.Scope) => {
             scope.setUser({ id: jovo.$user.getId() });
             scope.setTag('platform', jovo.getPlatformType());
             scope.setTag('locale', jovo.getLocale() || '');
@@ -49,17 +64,17 @@ export class SentryPlugin implements Plugin {
         });
 
         if (jovo.isIntentRequest()) {
-            addBreadcrumb({
+            Sentry.addBreadcrumb({
                 category: jovo.$type.type,
                 data: jovo.$inputs,
                 message: jovo.getIntentName(),
             });
         }
 
-        captureException(handleRequest.error);
+        Sentry.captureException(handleRequest.error);
     }
 
-    endReasonHandler(handleRequest: HandleRequest) {
+    private endReasonHandler(handleRequest: HandleRequest) {
         const { jovo } = handleRequest;
 
         if (!jovo) {
@@ -75,7 +90,7 @@ export class SentryPlugin implements Plugin {
         }
     }
 
-    getExtras(jovo: Jovo): object {
+    private getExtras(jovo: Jovo): object {
         const request = jovo.$request?.toJSON();
         const extras: any = {
             deviceId: jovo.getDeviceId(),
@@ -97,4 +112,6 @@ export class SentryPlugin implements Plugin {
 
         return extras;
     }
+
+
 }
