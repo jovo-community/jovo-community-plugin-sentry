@@ -64,7 +64,7 @@ export class Sentry {
                 extras.sessionId = (request.session || {}).sessionId;
             }
 
-            if (this.jovo.constructor.name === 'AutopilotBot') {
+            if (this.jovo.getRawText) {
                 extras.rawText = this.jovo.getRawText();
             }
         }
