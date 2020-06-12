@@ -11,7 +11,7 @@
     "typedoc": "typedoc --out ./docs ./ --mode file",
     "test": "jest"
   },
-  "author": "Mark Tucker",
+  "author": "Jovo Community",
   "license": "MIT",
   "homepage": "https://github.com/jovo-community/jovo-community-plugin-sentry#readme",
   "repository": {
