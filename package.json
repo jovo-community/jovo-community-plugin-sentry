@@ -1,6 +1,6 @@
 {
   "name": "jovo-community-plugin-sentry",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "A Jovo Framework plugin for Sentry",
   "main": "dist/src/index",
   "types": "dist/src/index.d.ts",
@@ -22,7 +22,8 @@
     "url": "https://github.com/jovo-community/jovo-community-plugin-sentry/issues"
   },
   "dependencies": {
-    "@sentry/node": "^5.15.4",
+    "@sentry/node": "^6.8.0",
+    "@sentry/types": "^6.8.0",
     "husky": "^4.2.3",
     "jovo-core": "^3.0.11"
   },
