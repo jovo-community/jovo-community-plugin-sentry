@@ -1,5 +1,6 @@
 import * as SentryClient from '@sentry/node';
 import { Jovo } from 'jovo-core';
+import type { Extras } from '@sentry/types';
 
 export class Sentry {
     jovo: Jovo;
@@ -45,8 +46,8 @@ export class Sentry {
         SentryClient.captureException(error);
     }
 
-    getExtras(): object {
-        let extras: any = {};
+    getExtras(): Extras {
+        let extras: Extras = {};
 
         if (this.jovo) {
             const request = this.jovo.$request?.toJSON();
